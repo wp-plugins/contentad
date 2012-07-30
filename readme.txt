@@ -3,7 +3,7 @@ Contributors: newclarity
 Tags: related content, engagement, ad, revenue
 Requires at least: 3.0.6
 Tested up to: 3.3.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 The Content.ad wordpress plugin allows you to display links to recommended content on each of your post pages.
 
@@ -99,6 +99,9 @@ The Content.Ad widget will display content from Content.Ad if 1) the current pag
 
 == Changelog ==
 
+
+= 1.0.2 =
+* Added banner image for wordpress.org/extend/plugins.
 
 = 1.0.1 =
 * Fixed version number _(was 1.0.0 dev instead of 1.0.0)_.
