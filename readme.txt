@@ -3,7 +3,7 @@ Contributors: newclarity
 Tags: related content, engagement, ad, revenue
 Requires at least: 3.0.6
 Tested up to: 3.3.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 The Content.ad wordpress plugin allows you to display links to recommended content on each of your post pages.
 
@@ -11,7 +11,7 @@ The Content.ad wordpress plugin allows you to display links to recommended conte
 
 You have an interesting and engaging website but how do you get the most out of your top performing content?  The answer - Content.ad.
 
-The content.ad plugin enables wordpress users to quickly and easily setup the Content.ad content recommendation system on their site.  
+The content.ad plugin enables wordpress users to quickly and easily setup the Content.ad content recommendation system on their site.
 
 ### What You Get ###
 With the [Content.ad](http://content.ad/) plugin you increase user engagement by showing the best recommended content from your site as well as generate revenue by showing related stories preselected from other sites on the web.
@@ -66,7 +66,7 @@ Content.ad only displays sponsored content on approved domains. This means new s
 
 = I still don’t see ads on my site? =
 
-Content.ad related content sections are configured to only appear on post pages. Also make sure that you have javascript and cookies turned on.  Ads should not appear on the front page of your site (generally a WordPress page or list of post summaries). 
+Content.ad related content sections are configured to only appear on post pages. Also make sure that you have javascript and cookies turned on.  Ads should not appear on the front page of your site (generally a WordPress page or list of post summaries).
 
 = How do I control ad placement?=
 
@@ -74,21 +74,21 @@ Use the Content.Ad plugin widget settings. Hover over a widget name and you will
 
 = Can a I display ads on multiple blogs? =
 
-Yes. You’ll need to tell Content.Ad that you have multiple domains. Each widget is associated with a domain. When you create a new widget there is an opportunity to add a domain.	
+Yes. You’ll need to tell Content.Ad that you have multiple domains. Each widget is associated with a domain. When you create a new widget there is an opportunity to add a domain.
 
 = WordPress widgets and Content.Ad widgets oh my=
 
-Content.Ad refers to their ads or “links to related content” as widgets. These are different than WordPress widgets. 
+Content.Ad refers to their ads or “links to related content” as widgets. These are different than WordPress widgets.
 
 = Can I display Content.Ad content in a sidebar or footer? =
 
-Yes. Set the placement for a Content.Ad widget to “widget”. In your WordPress widget settings drag the Content.Ad widget into your sidebar or footer area. 
+Yes. Set the placement for a Content.Ad widget to “widget”. In your WordPress widget settings drag the Content.Ad widget into your sidebar or footer area.
 
 The Content.Ad widget will display content from Content.Ad if 1) the current page is a post,  2)  placement for at least one Content.Ad widget set to "widget", and 3) exclusions for category or tag do not apply for this widget.
 
 == Screenshots ==
 
-1. **Settings - Connect your blog to Content.Ad** 
+1. **Settings - Connect your blog to Content.Ad**
 2. **Another bold caption** - More of the caption
 
 
@@ -99,6 +99,9 @@ The Content.Ad widget will display content from Content.Ad if 1) the current pag
 
 == Changelog ==
 
+
+= 1.0.1 =
+* Fixed version number _(was 1.0.0 dev instead of 1.0.0)_.
 
 = 1.0.0 =
 * **First release**
