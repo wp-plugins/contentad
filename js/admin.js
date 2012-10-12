@@ -23,21 +23,114 @@ jQuery(document).ready(function($) {
 		var tableRow = $(this).closest('tr');
 		tableRow.hide();
 		$.post(
-				ajaxurl,
-				{
-					action	: ContentAd.action,
-					nonce  	: ContentAd.nonce,
-					post_id : $(this).attr('data-postid')
-				},
-				function( response ){
-					//console.log(response);
-					if( 'success' == response.status ){
-						tableRow.remove();
-					}
-				},
-				'json'
+			ajaxurl,
+			{
+				action	: ContentAd.action,
+				nonce  	: ContentAd.nonce,
+				task	: 'delete',
+				post_id : $(this).attr('data-postid')
+			},
+			function( response ){
+				if( 'success' == response.status ){
+					tableRow.remove();
+				}
+			},
+			'json'
 		);
 
+	});
+
+	// AJAX call to pause ad widget
+	$('.row-actions .pause a').live('click', function(e){
+		e.preventDefault();
+		var tableRow = $(this).closest('tr');
+		var activeColumn = $( 'td.column-widget_active', tableRow );
+		var link = $(this);
+		$.post(
+			ajaxurl,
+			{
+				action	: ContentAd.action,
+				nonce  	: ContentAd.nonce,
+				task	: 'pause',
+				post_id : $(this).attr('data-postid')
+			},
+			function( response ){
+				var text = ContentAd.activateTranslation;
+				link.text( text ).attr( 'title', text).closest('span').attr( 'class', text.toLowerCase() );
+				activeColumn.html( '<span class="contentad-inactive-state"></span>' );
+			},
+			'json'
+		);
+	});
+
+	// AJAX call to pause ad widget
+	$('span.contentad-active-state').live('click', function(e){
+		var tableRow = $(this).closest('tr');
+		var activeColumn = $( 'td.column-widget_active', tableRow );
+		var link = $('.row-actions .pause a', tableRow);
+		var post_id = tableRow.attr( 'id').replace( 'post-', '' );
+		$.post(
+			ajaxurl,
+			{
+				action	: ContentAd.action,
+				nonce  	: ContentAd.nonce,
+				task	: 'pause',
+				post_id : post_id
+			},
+			function( response ){
+				var text = ContentAd.activateTranslation;
+				link.text( text ).attr( 'title', text).closest('span').attr( 'class', text.toLowerCase() );
+				activeColumn.html( '<span class="contentad-inactive-state"></span>' );
+			},
+			'json'
+		);
+	});
+
+	// AJAX call to activate ad widget
+	$('.row-actions .activate a').live('click', function(e){
+		e.preventDefault();
+		var tableRow = $(this).closest('tr');
+		var activeColumn = $( 'td.column-widget_active', tableRow );
+		var link = $(this);
+		$.post(
+			ajaxurl,
+			{
+				action	: ContentAd.action,
+				nonce  	: ContentAd.nonce,
+				task	: 'activate',
+				post_id : $(this).attr('data-postid')
+			},
+			function( response ){
+				var text = ContentAd.pauseTranslation;
+				link.text( text ).attr( 'title', text).closest('span').attr( 'class', text.toLowerCase() );
+				activeColumn.html( '<span class="contentad-active-state"></span>' );
+			},
+			'json'
+		);
+
+	});
+
+	// AJAX call to activate ad widget
+	$('span.contentad-inactive-state').live('click', function(e){
+		var tableRow = $(this).closest('tr');
+		var activeColumn = $( 'td.column-widget_active', tableRow );
+		var link = $('.row-actions .activate a', tableRow);
+		var post_id = tableRow.attr( 'id').replace( 'post-', '' );
+		$.post(
+			ajaxurl,
+			{
+				action	: ContentAd.action,
+				nonce  	: ContentAd.nonce,
+				task	: 'activate',
+				post_id : post_id
+			},
+			function( response ){
+				var text = ContentAd.pauseTranslation;
+				link.text( text ).attr( 'title', text).closest('span').attr( 'class', text.toLowerCase() );
+				activeColumn.html( '<span class="contentad-active-state"></span>' );
+			},
+			'json'
+		);
 	});
 
     $( 'tr.inline-edit-row' ).removeClass( 'inline-edit-row-page' ).addClass( 'inline-edit-row-post' );
@@ -50,6 +143,8 @@ jQuery(document).ready(function($) {
 		var id = inlineEditPost.getId(this);
 		var post_title = $( '#inline_' + id + ' .post_title' ).text();
 		var placement = $('#inline_' + id + ' .placement').text();
+		var displayHome = $('#inline_' + id + ' .ca_display_home').text();
+		var displayCatTag = $('#inline_' + id + ' .ca_display_cat_tag').text();
 		var excCategories = $('#inline_' + id + ' .excluded_categories').text();
 		var excTags = $('#inline_' + id + ' .excluded_tags').text();
 
@@ -63,6 +158,20 @@ jQuery(document).ready(function($) {
 			$( '#before_post_content' ).attr('checked', 'checked');
 		} else {
 			$( '#after_post_content' ).attr('checked', 'checked');
+		}
+
+		// Assign ca_display_home
+		if( '1' == displayHome ) {
+			$( '#_ca_display_home').attr( 'checked', 'checked' );
+		} else {
+			$( '#_ca_display_home').removeAttr( 'checked' );
+		}
+
+		// Assign ca_display_cat_tag
+		if( '1' == displayCatTag ) {
+			$( '#_ca_display_cat_tag').attr( 'checked', 'checked' );
+		} else {
+			$( '#_ca_display_cat_tag').removeAttr( 'checked' );
 		}
 
 		// Assign categories

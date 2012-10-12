@@ -1,50 +1,45 @@
-=== PluginName ===
-Contributors: newclarity
-Tags: related content, engagement, ad, revenue
+=== Content.ad ===
+Contributors: Broadspring, NewClarity
+Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts,
 Requires at least: 3.0.6
 Tested up to: 3.3.4
-Stable tag: 1.0.3
+Stable tag: 1.1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Content.ad wordpress plugin allows you to display links to recommended content on each of your post pages.
+Display a list of related and popular content on your site to increase visitor engagement and as a new source of revenue.
 
 == Description ==
 
-You have an interesting and engaging website but how do you get the most out of your top performing content?  The answer - Content.ad.
+You have an interesting and engaging website but how do you get the most out of your top performing content?  The answer - [**Content.ad**](https://www.content.ad).
 
-The content.ad plugin enables wordpress users to quickly and easily setup the Content.ad content recommendation system on their site.
+This plugin enables WordPress users to quickly and easily setup the Content.ad content recommendation system on their site. The plugin can be used to serve related articles from your own site, sponsored articles from across the web or both.
 
-### What You Get ###
-With the [Content.ad](http://content.ad/) plugin you increase user engagement by showing the best recommended content from your site as well as generate revenue by showing related stories preselected from other sites on the web.
+= Key Features =
+* Simple installation and integration without the need for editing templates, adding shortcodes or customizing themes.
+* Create, edit, customize and report all from within your WordPress admin.
+* Multiple display options to match any site or take control and define your own styles.
+* Contextually matches related post content without relying on categories or tagging.
+* Include sponsored links to earn a healthy 70% revenue share on sponsored CPA offers _(available to English sites only.)_
 
-Content.ad then shows links to your best content based on the results of these algorithms, giving your readers more of what they like and want. That means happier and more engaged visitors, who will be exploring more pages and spending more time on your site.
+= How Does It Work? =
 
-Content.ad can also be a powerful new source of revenue by allowing you to easily display links
-to interesting and relevant promoted content from around the web. Content that has been pre-screened and selected, especially for you, will give you better conversions and higher revenues!
-
-### How Does It Work? ###
-
-* Increases your site Engagement: Our algorithms analyze your site's content performance based on multiple factors including the page content, popularity, social sharing and other important metrics.
-
-Content.ad then shows links to your best content based on the results of these algorithms, giving your readers more of what they like and want. That means happier and more engaged visitors, who will be exploring more pages and spending more time on your site.
-
-* Generate new revenue: Content.ad allows you to easily display links to interesting and relevant promoted content from around the web. Content that has been pre-screened and selected, especially for you, will give you better conversions and higher revenues.
+Content.ad analyzes your pages on an ongoing basis and displays links to the content on your site that that your readers will find most interesting. Our algorithm creates a complete _"engagement"_ profile of each piece of content based on popularity, social sharing, comments and other metrics, and then promotes your best content so as to maximize page views, time-on-site, and revenue.
 
 == Installation ==
 
-= Requirements: =
-
-* PHP 5.2 or higher
-* Multisite is not supported
-
-You must register with Content.Ad. The account is 100% free.
+= Requirements =
+* PHP 5.2 or higher.
+* WordPress v3.0.x or higher.
+* Multisite is not currently supported.
+* You must register with Content.ad. The account is 100% free.
 
 = Install Via Plugin Repository =
-
 1. Log into WordPress admin for your site
 2. Go to 'Plugins -> Add New' and choose 'Search'
-3. Search for Content.Ad and click 'Install Now'
+3. Search for Content.ad and click 'Install Now'
 4. Activate the plugin through the 'Plugins' menu
-5. Go to 'Settings -> Content.Ad' and click 'Register your plugin'
+5. Go to 'Settings -> Content.ad' and click 'Register your plugin'
 6. Enjoy!
 
 == Frequently Asked Questions ==
@@ -53,52 +48,48 @@ You must register with Content.Ad. The account is 100% free.
 The Content.ad Widget will start to work immediately; however, part of the optimization process involves learning which of your content performs the best. A certain number of impressions must be served before the widget is able to fully optimize and display the most effective content.
 
 = Does Content.ad work on web sites in any language? =
-
-Currently, the tool will work only on websites that are in the English language.
+Currently, the tool will only work properly on English language websites.
 
 = Will the widget slow down my site? =
+No. The Content.ad widget is designed to load _"asynchronously"_. This means your page will load independently of the widget script.
 
-No. The content.ad widget is designed to load "asynchronously". This means your page will load independently of the widget script.
+= I have sponsored content on my site with clicks but don’t see any revenue. =
+Revenue is based on actions not clicks.  Sponsored content served through the system won't generate revenue unless the user performs a particular action on the advertisers site _(ex. Signs up for a service or purchases something)_. When this happens the payout is generally much better than what you expect to see from a pay-per-click advertisement. This means that you might need to let the widget run for a while to start seeing revenue.
 
-= I've configured my widget to display sponsored content but don't see any sponsored links appearing. =
+= I've configured my widget to display sponsored content but don't see them in the widget. =
+Content.ad only displays sponsored content on approved domains. This means new sites could take 24 to 48 hours before sponsored content starts getting served. Once your site has been reviewed you will be notified.
 
-Content.ad only displays sponsored content on approved domains. This means new sites could take 24 to 48 hours before sponsored content starts getting served. If for some reason your site is not approved to serve sponsored content, we will contact you and let you know why. Your Content.Ad account settings will indicate whether a domain has been approved.
+= How do I control ad placement? =
+On the Content.ad plugin widget settings page, hover over a widget name and you will an option for _"placement"_.  Selecting this option will open a placement configuration page. Options include, showing the widget above your content, below your content, in a WordPress widget _(sidebar, footer etc.)_ and only showing it on certain types of pages like the homepage, category page or post pages.
 
-= I still don’t see ads on my site? =
+= Can I display Content.ad content in a sidebar or footer? =
+Yes. Set the placement for a Content.ad widget to _"widget"_. In your WordPress widget settings drag the Content.ad widget into your sidebar or footer area.
 
-Content.ad related content sections are configured to only appear on post pages. Also make sure that you have javascript and cookies turned on.  Ads should not appear on the front page of your site (generally a WordPress page or list of post summaries).
-
-= How do I control ad placement?=
-
-Use the Content.Ad plugin widget settings. Hover over a widget name and you will see options Edit | Placement | Delete. Click on placement to indicate if you want the ads to appear before or after the post content.  Ads can also appear in your WordPress sidebars or footers. Use the WordPress widget.
-
-= Can a I display ads on multiple blogs? =
-
-Yes. You’ll need to tell Content.Ad that you have multiple domains. Each widget is associated with a domain. When you create a new widget there is an opportunity to add a domain.
-
-= WordPress widgets and Content.Ad widgets oh my=
-
-Content.Ad refers to their ads or “links to related content” as widgets. These are different than WordPress widgets.
-
-= Can I display Content.Ad content in a sidebar or footer? =
-
-Yes. Set the placement for a Content.Ad widget to “widget”. In your WordPress widget settings drag the Content.Ad widget into your sidebar or footer area.
-
-The Content.Ad widget will display content from Content.Ad if 1) the current page is a post,  2)  placement for at least one Content.Ad widget set to "widget", and 3) exclusions for category or tag do not apply for this widget.
+= Does the Content.ad plugin work with Multisite? =
+Not at this time. [**Let us know**](https://getsatisfaction.com/contentad) if Multisite support is important to you.
 
 == Screenshots ==
 
-1. **Settings - Connect your blog to Content.Ad**
-2. **Another bold caption** - More of the caption
+1. **Easy signup and integration without leaving your WordPress blog.**
 
 
-== Known Issues ==
+2. **Placement settings - Create multiple widgets and show them in different places throughout your site.**
 
-1. Does not work with MultiSite
+
+3. **Multiple styling and configuration options to fit any site.**
+
+
+4. **Advanced analytics shows you how the widget is performing.**
+
 
 
 == Changelog ==
 
+= 1.1.0 =
+* Added support for pausing and activating Content.ad widgets.
+* Added different Content.ad units in different WordPress widgets.
+* Added options for showing on home and category pages.
+* Added cron job to remove deleted widgets from the page.
 
 = 1.0.3 =
 * Moved banner to correct directory to enable it to display on wordpress.org.
@@ -114,6 +105,8 @@ The Content.Ad widget will display content from Content.Ad if 1) the current pag
 
 == Upgrade Notice ==
 
+= 1.1.0 =
+* **New Features** &ndash; We added support for pausing and activating Content.ad widgets and options for showing Content.ad widgets on home and category pages. We also now allow different Content.ad units in different WordPress widgets.
 
 = 1.0.0 =
 * **First release**

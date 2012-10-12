@@ -1,8 +1,8 @@
 <?php
 
-if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
+if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 
-	class ContentAd_Post_Type {
+	class ContentAd__Includes__Post_Type {
 
 		function __construct() {
 			add_action( 'init', array( $this, 'content_ad_post_type' ) );
@@ -51,7 +51,8 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 				'exc_cats'		=>  __( 'Excluded Categories', 'contentad' ),
 				'exc_tags'		=>  __( 'Excluded Tags', 'contentad' ),
 				'last_edited'	=>	__( 'Last Edited', 'contentad' ),
-				'widget_stats'  =>  __( 'Widget Statistics', 'contentad' ),
+				'widget_stats'  =>  __( 'Reports', 'contentad' ),
+				'widget_active' =>  __( 'Active', 'contentad' ),
 			);
 			return $columns;
 		}
@@ -62,8 +63,8 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 				case 'widget_title':
 					$query = http_build_query( array(
 						'wid' => get_post_meta( $post_id, '_widget_guid', true ),
-						'aid' => ContentAd_API::get_api_key(),
-						'installKey' => ContentAd_API::get_installation_key(),
+						'aid' => ContentAd__Includes__API::get_api_key(),
+						'installKey' => ContentAd__Includes__API::get_installation_key(),
 						'TB_iframe' => 'true',
 						'height' => '85%',
 						'width' => '960',
@@ -76,6 +77,15 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 
 					$actions['edit-ad-widget hide-if-no-js'] = '<a href="'.$url.'" class="thickbox" title="' . esc_attr( __( 'Edit this widget' ) ) . '">' . __( 'Edit' ) . '</a>';
 					$actions['edit-wp-placement inline hide-if-no-js'] = '<a href="#" class="editinline" title="' . esc_attr( __( 'Edit this widget\'s placement' ) ) . '">' . __( 'Placement' ) . '</a>';
+
+					if( get_post_meta( $post_id, '_ca_widget_inactive', true ) ) {
+						$text = __( 'Activate', 'contentad' );
+						$actions['activate'] = "<a href=\"#\" title=\"{$text}\" data-postid=\"{$post->ID}\">{$text}</a>";
+					} else {
+						$text = __( 'Pause', 'contentad' );
+						$actions['pause'] = "<a href=\"#\" title=\"{$text}\" data-postid=\"{$post->ID}\">{$text}</a>";
+					}
+
 					$actions['trash'] = "<a class='submitdelete' title='" . esc_attr( __( 'Delete this widget' ) ) . "' href='#" . "' data-postid='{$post_id}'>" . __( 'Delete' ) . "</a>";
 					$always_visible = false;
 					$action_count = count( $actions );
@@ -99,8 +109,8 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 					$title = trim( $post->post_title );
 
 					$excluded_categories = get_post_meta( $post_id, '_excluded_categories', true );
-					if( $excluded_categories && is_array( $excluded_categories ) ) {
-						$excluded_categories = join(',', $excluded_categories);
+					if( is_array( $excluded_categories ) ) {
+						$excluded_categories = join( ',', $excluded_categories );
 					}
 
 					echo '
@@ -108,6 +118,8 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 						<div class="post_title">' . $title . '</div>
 						<div class="post_name">' . $post->post_name . '</div>
 						<div class="placement">' . get_post_meta( $post->ID, 'placement', true ) . '</div>
+						<div class="ca_display_home">' . get_post_meta( $post->ID, '_ca_display_home', true ) . '</div>
+						<div class="ca_display_cat_tag">' . get_post_meta( $post->ID, '_ca_display_cat_tag', true ) . '</div>
 						<div class="excluded_categories">' . $excluded_categories . '</div>
 						<div class="excluded_tags">' . get_post_meta( $post_id, '_excluded_tags', true ) . '</div>';
 					$exclude_tags = get_post_meta( $post->ID, 'exclude_tags' );
@@ -151,7 +163,7 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 							}
 						}
 						if( $categories ) {
-							echo join(', ', $categories);
+							echo join( ', ', $categories );
 							break;
 						}
 					}
@@ -167,14 +179,21 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 				case 'widget_stats':
 					$query = http_build_query( array(
 						'wid' => get_post_meta( $post_id, '_widget_guid', true ),
-						'aid' => ContentAd_API::get_api_key(),
-						'installKey' => ContentAd_API::get_installation_key(),
+						'aid' => ContentAd__Includes__API::get_api_key(),
+						'installKey' => ContentAd__Includes__API::get_installation_key(),
 						'TB_iframe' => 'true',
 						'height' => '85%',
 						'width' => '960',
 					) );
 					$url = CONTENTAD_REMOTE_URL . "widget/report.aspx?$query";
 					echo '<a href="'.$url.'" class="thickbox">View</a>';
+					break;
+				case 'widget_active':
+					if( get_post_meta( $post_id, '_ca_widget_inactive', true ) ) {
+						echo '<span class="contentad-inactive-state"></span>';
+					} else {
+						echo '<span class="contentad-active-state"></span>';
+					}
 					break;
 			}
 		}
@@ -185,12 +204,30 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 					return $post_id;
 				}
 				if( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-					append_to_log( PHP_EOL . 'AJAX "QUICK EDIT" SAVE' );
+					contentAd_append_to_log( PHP_EOL . 'AJAX "QUICK EDIT" SAVE' );
 					if( isset( $_POST['action'] ) && isset( $_POST['screen'] ) && 'inline-save' == $_POST['action'] && 'edit-content_ad_widget' == $_POST['screen'] ) {
+
+						if ( isset( $_POST['_ca_display_home'] ) ) {
+							contentAd_append_to_log( '    UPDATING _ca_display_home FOR POST ('.$post_id.') TO: ' . $_POST['_ca_display_home'] );
+							update_post_meta( $post_id, '_ca_display_home', strip_tags( $_POST['_ca_display_home'] ) );
+						} else {
+							contentAd_append_to_log( '    UPDATING _ca_display_home FOR POST ('.$post_id.') TO: 0' );
+							delete_post_meta( $post_id, '_ca_display_home' );
+						}
+
+						if ( isset( $_POST['_ca_display_cat_tag'] ) ) {
+							contentAd_append_to_log( '    UPDATING _ca_display_cat_tag PLACEMENT FOR POST ('.$post_id.') TO: ' . $_POST['_ca_display_cat_tag'] );
+							update_post_meta( $post_id, '_ca_display_cat_tag', strip_tags( $_POST['_ca_display_cat_tag'] ) );
+						} else {
+							contentAd_append_to_log( '    UPDATING _ca_display_cat_tag FOR POST ('.$post_id.') TO: 0' );
+							delete_post_meta( $post_id, '_ca_display_cat_tag' );
+						}
+
 						if ( isset( $_POST['placement'] ) ) {
-							append_to_log( '    UPDATING PLACEMENT FOR POST ('.$post_id.') TO: ' . $_POST['placement'] );
+							contentAd_append_to_log( '    UPDATING PLACEMENT FOR POST ('.$post_id.') TO: ' . $_POST['placement'] );
 							update_post_meta( $post_id, 'placement', strip_tags( $_POST['placement'] ) );
 						}
+
 						if( isset( $_POST['post_category'] ) && is_array( $_POST['post_category'] ) ) {
 							foreach( $_POST['post_category'] as $key => $cat_id ) {
 								if( empty( $cat_id ) ) {
@@ -199,9 +236,10 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 									$_POST['post_category'][$key] = (int) $cat_id;
 								}
 							}
-							append_to_log( '    UPDATING EXCLUSION CATEGORIES FOR POST ('.$post_id.') TO: ' . join(', ', $_POST['post_category']) );
+							contentAd_append_to_log( '    UPDATING EXCLUSION CATEGORIES FOR POST ('.$post_id.') TO: ' . join(', ', $_POST['post_category']) );
 							update_post_meta( $post_id, '_excluded_categories', $_POST['post_category'] );
 						}
+
 						if( isset( $_POST['tax_input']['post_tag'] ) ) {
 							$tags = explode(',', preg_replace( '/, /', ',', strip_tags( $_POST['tax_input']['post_tag'] ) ));
 							$terms = array();
@@ -211,7 +249,7 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 									$terms[] = $term->name;
 								}
 							}
-							append_to_log( '    UPDATING EXCLUSION TAGS FOR POST ('.$post_id.') TO: ' . join( ', ', $terms ) );
+							contentAd_append_to_log( '    UPDATING EXCLUSION TAGS FOR POST ('.$post_id.') TO: ' . join( ', ', $terms ) );
 							update_post_meta( $post_id, '_excluded_tags', join( ', ', $terms ) );
 						}
 					}
@@ -240,8 +278,24 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 								<label for="<?php esc_attr_e($key) ?>">
 									<input id="<?php esc_attr_e($key) ?>" type="radio" value="<?php esc_attr_e($key) ?>" name="placement" />
 									&nbsp;<?php echo $value ?>
-								</label><?php endforeach; ?>
-							</p>
+								</label><?php
+								if( 'in_widget' == $key ) { ?>
+									<div class="ca-indent-section">
+										<p>
+											<label for="_ca_display_home">
+												<input id="_ca_display_home" type="checkbox" value="1" name="_ca_display_home" />
+												&nbsp;<?php _e( 'Display on home page', 'contentad' ); ?>
+											</label>
+										</p>
+										<p>
+											<label for="_ca_display_cat_tag">
+												<input id="_ca_display_cat_tag" type="checkbox" value="1" name="_ca_display_cat_tag" />
+												&nbsp;<?php _e( 'Display on category and tag pages', 'contentad' ); ?>
+											</label>
+										</p>
+									</div><?php
+								} ?>
+							<?php endforeach; ?></p>
 						</div>
 					</fieldset><?php
 
@@ -308,7 +362,5 @@ if ( ! class_exists( 'ContentAd_Post_Type' ) ) {
 		}
 
 	}
-
-	new ContentAd_Post_Type();
 
 }
