@@ -108,3 +108,21 @@
 .wrap.contentad table.form-table th {
 	width: 30px;
 }
+
+.ca-indent-section {
+	margin-left: 25px;
+}
+
+span.contentad-active-state {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('../images/sm_icon_active.png') no-repeat;
+}
+
+span.contentad-inactive-state {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('../images/sm_icon_inactive.png') no-repeat;
+}

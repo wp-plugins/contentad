@@ -1,45 +1,14 @@
 <?php
 
-global $wp_version;
-if( version_compare( $wp_version, '3.1', '<' ) ) {
-	class Content_Ad_WP30_Menu_Fix {
-		static function on_load() {
-			add_filter( 'parent_file', array( __CLASS__, 'parent_file' ) );
-			add_action( 'adminmenu', array( __CLASS__, 'adminmenu' ) );
-			add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
-		}
-		static function  parent_file( $parent_file ) {
-			ob_start();
-			return $parent_file;
-		}
-		static function adminmenu() {
-			$html = ob_get_clean();
-			$html = preg_replace('#(\<a[^\>]*wp-has-submenu[^\>]*\>)Widgets(\<\/a\>)#', '${1}Content.Ad${2}', $html);
-			echo $html;
-		}
-		static function admin_menu() {
-			global $submenu;
-			$menu_slug = 'edit.php?post_type=content_ad_widget';
-			$submenu_slug = 'post-new.php?post_type=content_ad_widget';
-			if ( !isset( $submenu[$menu_slug] ) ) {
-				return false;
-			}
-			foreach ( $submenu[$menu_slug] as $i => $item ) {
-				if ( $submenu_slug == $item[2] ) {
-					unset( $submenu[$menu_slug][$i] );
-					return $item;
-				}
-			}
-		}
-	}
-	Content_Ad_WP30_Menu_Fix::on_load();
-}
+if ( ! class_exists( 'ContentAd__Includes__Admin__Admin' ) ) {
 
-if ( ! class_exists( 'ContentAd_Admin' ) ) {
-
-	class ContentAd_Admin {
+	class ContentAd__Includes__Admin__Admin {
 
 		function __construct() {
+			global $wp_version;
+			if( version_compare( $wp_version, '3.1', '<' ) ) {
+				ContentAd__Includes__Admin__WP3_Menu_Fix::on_load();
+			}
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
@@ -78,7 +47,7 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 		}
 
 		function menu_page_settings(){
-			ContentAd_API::validate_installation_key();
+			ContentAd__Includes__API::validate_installation_key();
 			settings_errors( 'contentad_settings' ); ?>
 			<div class="wrap contentad">
 				<div class="icon32 icon32-contentad-settings" id="icon-broadpsring-ca" style="width: 178px;height:45px;">
@@ -94,18 +63,16 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 		}
 
 		function load() {
-			// TODO: Rename (prefix) handles for our scripts and styles
 			global $contentad_settings_page, $current_screen;
 			$screen = $current_screen;
 			if ( ( $screen->id == $contentad_settings_page ) || ( 'edit-content_ad_widget' == $screen->id ) ) {
 				if( $screen->id == $contentad_settings_page ) {
-					wp_enqueue_script( 'settings.js', plugins_url( 'js/', CONTENTAD_FILE ).'settings.js', array('jquery','thickbox'), '0.6' );
-					wp_enqueue_script( 'easyXDM.debug.js', plugins_url( 'js/easyxdm/', CONTENTAD_FILE ).'easyXDM.debug.js', array('jquery','json2'), null );
+					wp_enqueue_script( 'contentad.settings.js', plugins_url( 'js/', CONTENTAD_FILE ).'settings.js', array('jquery','thickbox'), '0.6' );
 				}
 				if( 'edit-content_ad_widget' == $screen->id ) {
 					$query = http_build_query( array(
-						'installKey' => ContentAd_API::get_installation_key(),
-						'aid' => ContentAd_API::get_api_key(),
+						'installKey' => ContentAd__Includes__API::get_installation_key(),
+						'aid' => ContentAd__Includes__API::get_api_key(),
 						'new' => 1,
 						'TB_iframe' => 'true',
 						'height' => '85%',
@@ -113,18 +80,20 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 					) );
 					$new_widget_url = CONTENTAD_REMOTE_URL . "widget/multipost.aspx?{$query}";
 					$query = http_build_query( array(
-						'installKey' => ContentAd_API::get_installation_key(),
-						'aid' => ContentAd_API::get_api_key(),
+						'installKey' => ContentAd__Includes__API::get_installation_key(),
+						'aid' => ContentAd__Includes__API::get_api_key(),
 						'TB_iframe' => 'true',
 						'height' => '85%',
 						'width' => '950',
 					) );
 					$report_url = CONTENTAD_REMOTE_URL . "widget/report.aspx?{$query}";
 					$settings_url = CONTENTAD_REMOTE_URL . "Account/Details.aspx?{$query}";
-					wp_enqueue_script( 'admin.js', plugins_url( 'js/', CONTENTAD_FILE ).'admin.js', array('jquery','thickbox'), '0.6' );
-					wp_localize_script( 'admin.js', 'ContentAd', array(
-						'action' => 'delete_contentad_widget',
-						'nonce' => wp_create_nonce( 'delete_contentad_widget' ),
+					wp_enqueue_script( 'contentad.admin.js', plugins_url( 'js/', CONTENTAD_FILE ).'admin.js', array('jquery','thickbox'), '0.6' );
+					wp_localize_script( 'contentad.admin.js', 'ContentAd', array(
+						'action' => 'edit_contentad_widget',
+						'nonce' => wp_create_nonce( 'edit_contentad_widget' ),
+						'pauseTranslation' => __( 'Pause', 'contentad' ),
+						'activateTranslation' => __( 'Activate', 'contentad' ),
 						'newWidgetCall' => $new_widget_url,
 						'reportName' => __('View Statistics'),
 						'reportCall' => $report_url,
@@ -132,10 +101,10 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 						'settingsCall' => $settings_url,
 					) );
 				}
-				wp_enqueue_style( 'admin.css', plugins_url( 'css/', CONTENTAD_FILE ).'admin.css', array('thickbox') );
+				wp_enqueue_style( 'contentad.admin.css', plugins_url( 'css/', CONTENTAD_FILE ).'admin.css', array('thickbox') );
 			}
 			if ( $screen->id == 'edit-content_ad_widget' ) {
-				ContentAd_Init::get_widgets();
+				ContentAd__Includes__Init::get_widgets();
 			}
 		}
 
@@ -159,7 +128,7 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 				'email' => get_bloginfo('admin_email'),
 				'domain' => home_url(),
 				'cb' => CONTENTAD_URL . '/includes/tbclose.php',
-				'installKey' => ContentAd_API::get_installation_key(),
+				'installKey' => ContentAd__Includes__API::get_installation_key(),
 				'TB_iframe' => 'true',
 				'height' => '85%',
 				'width' => '950',
@@ -172,12 +141,12 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 		}
 
 		function settings_account_connection() {
-			$api_key = ContentAd_API::get_api_key();
-			$is_valid = ContentAd_API::validate_api_key( $api_key );
+			$api_key = ContentAd__Includes__API::get_api_key();
+			$is_valid = ContentAd__Includes__API::validate_api_key( $api_key );
 
 			$query = http_build_query( array(
-				'installKey' => ContentAd_API::get_installation_key(),
-				'aid' => ContentAd_API::get_api_key(),
+				'installKey' => ContentAd__Includes__API::get_installation_key(),
+				'aid' => ContentAd__Includes__API::get_api_key(),
 				'TB_iframe' => 'true',
 				'height' => '85%',
 				'width' => '950',
@@ -200,8 +169,8 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 
 		function settings_widget_create() {
 			$query = http_build_query( array(
-				'installKey' => ContentAd_API::get_installation_key(),
-				'aid' => ContentAd_API::get_api_key(),
+				'installKey' => ContentAd__Includes__API::get_installation_key(),
+				'aid' => ContentAd__Includes__API::get_api_key(),
 				'new' => 1,
 				'TB_iframe' => 'true',
 				'height' => '85%',
@@ -213,7 +182,7 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 
 		function admin_notices() {
 			global $contentad_settings_page, $current_screen;
-			$api_key = ContentAd_API::get_api_key();
+			$api_key = ContentAd__Includes__API::get_api_key();
 			if ( ! $api_key ) {
 				$screen = $current_screen;
 				if ( current_user_can( 'manage_options' ) && ! ( $screen->id == $contentad_settings_page ) ) {
@@ -223,7 +192,5 @@ if ( ! class_exists( 'ContentAd_Admin' ) ) {
 		}
 
 	}
-
-	new ContentAd_Admin();
 
 }
