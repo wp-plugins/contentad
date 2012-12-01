@@ -3,7 +3,7 @@ Contributors: Broadspring, NewClarity
 Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts,
 Requires at least: 3.0.6
 Tested up to: 3.3.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,6 +84,9 @@ Not at this time. [**Let us know**](https://getsatisfaction.com/contentad) if Mu
 
 
 == Changelog ==
+
+= 1.1.1 =
+* Fixed issue where the featured image wasn't being displayed in Content.ad widgets if set.
 
 = 1.1.0 =
 * Added support for pausing and activating Content.ad widgets.

@@ -11,9 +11,23 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 
 		function content_ad_post_type() {
 			global $wp_version;
+			$singular = __( 'Widget', 'contentad' );
+			$plural = __( 'Widgets', 'contentad' );
 			register_post_type( 'content_ad_widget', array(
 				'public' => true,
-				'label' => 'Widgets',
+				'label' => $plural,
+				'labels' => array(
+					'name' => $plural,
+					'singular_name' => $singular,
+					'add_new' => sprintf( __( 'Add New %s' ), $singular ),
+					'add_new_item' => sprintf( __( 'Add New %s' ), $singular ),
+					'edit_item' => sprintf( __( 'Edit %s' ), $singular ),
+					'new_item' => sprintf( __( 'New %s' ), $singular ),
+					'view_item' => sprintf( __( 'View %s' ), $singular ),
+					'search_items' => sprintf( __( 'Search %s' ), $plural ),
+					'not_found' => sprintf( __( 'No %s found' ), strtolower( $plural ) ),
+					'not_found_in_trash' => sprintf( __( 'No %s found in trash' ), strtolower( $plural ) ),
+				),
 				'exclude_from_search' => 'true',
 				'show_ui' => true,
 				'show_in_menu' => CONTENTAD_SLUG,

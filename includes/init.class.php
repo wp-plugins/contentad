@@ -29,11 +29,11 @@ if ( ! class_exists( 'ContentAd__Includes__Init' ) ) {
 			add_action( 'wp_head', array( __CLASS__, 'wp_head' ) );
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), 0 );
 			add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
-			add_filter( 'plugin_action_links_contentad/content.ad.php', array( __CLASS__, 'plugin_action_links' ) );
+			add_filter( 'plugin_action_links_contentad/contentad.php', array( __CLASS__, 'plugin_action_links' ) );
 		}
 
 
-		function plugin_action_links( $actions ) {
+		public static function plugin_action_links( $actions ) {
 			/**
 			 * Add a 'Settings' link to the available actions for this plugin on the plugin page.
 			 * Add to the beginning of the array of actions.
@@ -45,7 +45,7 @@ if ( ! class_exists( 'ContentAd__Includes__Init' ) ) {
 		}
 
 		public static function plugin_row_meta( $plugin_meta, $plugin_file ) {
-			if ( false !== strpos( $plugin_file, '/content.ad.php' ) ) {
+			if ( false !== strpos( $plugin_file, '/contentad.php' ) ) {
 				$link_text = __( 'Visit on WordPress.org', 'contentad' );
 				$plugin_meta[] = "<a href=\"http://wordpress.org/extend/plugins/contentad\" target=\"_blank\">{$link_text}</a>";
 				$link_text = __( 'Visit Developer\'s Profile', 'contentad' );

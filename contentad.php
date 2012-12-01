@@ -3,7 +3,7 @@
  * Plugin Name: Content.Ad
  * Plugin URI: http://content.ad/
  * Description: Content.Ad enables blog owners to display ads or related blog posts (from their own blog) in a "lead me to more content" section. The ads are sourced dynamically from the Content.Ad system and can be a source of revenue for the blog owner.
- * Version:  1.1.0
+ * Version:  1.1.1
  * Author: BroadSpring
  * Author URI: http://content.ad/
  * Developer: NewClarity LLC
@@ -27,10 +27,23 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-define( 'CONTENTAD_VERSION', '1.1.0' );
-define( 'CONTENTAD_FILE', __FILE__ );
-define( 'CONTENTAD_PATH', plugin_dir_path( __FILE__ ) );
-define( 'CONTENTAD_URL', plugins_url( '', __FILE__ ) );
+/**
+ * [mikes] This handles symlinked plugins, at least if they
+ *         are stored in identically named subdirectories.
+ */
+function get_contentad_file() {
+	$file = __FILE__;
+	if ( false === strpos( WP_PLUGIN_DIR, $file ) ) {
+    $file = WP_PLUGIN_DIR . '/' . basename( dirname( $file ) ) . '/' . basename( $file );
+    $file = str_replace( '/plugins/plugins/', '/plugins/', $file );
+  }
+  return $file;
+}
+
+define( 'CONTENTAD_VERSION', '1.1.1' );
+define( 'CONTENTAD_FILE', get_contentad_file() );
+define( 'CONTENTAD_PATH', plugin_dir_path( CONTENTAD_FILE ) );
+define( 'CONTENTAD_URL', plugins_url( '', CONTENTAD_FILE ) );
 define( 'CONTENTAD_NAME', __('Content.Ad', 'contentad') );
 define( 'CONTENTAD_SLUG', 'contentad' );
 define( 'CONTENTAD_API_URL', 'http://api.content.ad/api.svc' );
@@ -52,7 +65,7 @@ if( ! defined('CONTENTAD_ERROR_LOGGING') ) {
 if ( version_compare( PHP_VERSION, '5.2', '<' ) ) {
 	if ( is_admin() && ( ! defined('DOING_AJAX') || ! DOING_AJAX ) ) {
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-		deactivate_plugins( __FILE__ );
+		deactivate_plugins( CONTENTAD_FILE );
 	    wp_die( printf( __(
 			'%s requires PHP version 5.2 or later. You are currently running version %s.
 			This plugin has now disabled itself.
@@ -69,8 +82,8 @@ if ( version_compare( PHP_VERSION, '5.2', '<' ) ) {
 function ContentAd_Autoloader( $class ) {
 	$replace = array( '#contentad#' => '', '#__#' => DIRECTORY_SEPARATOR, '#_#' => '-' );
 	$path = preg_replace( array_keys( $replace ), array_values( $replace ), strtolower( $class ) );
-	if( file_exists( dirname( __FILE__ ) . "{$path}.class.php" ) )
-		include( dirname( __FILE__ ) . "$path.class.php" );
+	if( file_exists( dirname( CONTENTAD_FILE ) . "{$path}.class.php" ) )
+		include( dirname( CONTENTAD_FILE ) . "$path.class.php" );
 }
 spl_autoload_register( 'ContentAd_Autoloader' );
 
