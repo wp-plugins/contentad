@@ -42,7 +42,7 @@ if ( ! class_exists( 'ContentAd__Includes__Images' ) ) {
 
 		public static function get_featured_image_src( $post_id ) {
 			if( $attachment_id = self::get_featured_image_id( $post_id ) ) {
-				self::get_image_src_by_id( $attachment_id );
+				return self::get_image_src_by_id( $attachment_id );
 			}
 			return false;
 		}

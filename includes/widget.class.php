@@ -3,7 +3,7 @@
 class ContentAd__Includes__Widget extends WP_Widget {
 
     function ContentAd__Includes__Widget() {
-        $this->WP_Widget(
+      $this->WP_Widget(
 			$id = false,
             $title = __('Content.ad Widget'),
             $widget_ops = array(
