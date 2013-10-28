@@ -1,4 +1,4 @@
-#TB_closeWindowButton img {
+#TB_closeWindowButton img, #TB_closeWindowButton .tb-close-icon {
 	display:none;
 }
 
@@ -18,11 +18,12 @@
 }
 
 .wrap .icon32-posts-content_ad_widget {
-	width: 178px;
-	height: 45px;
+	width: 201px;
+	height: 71px;
 }
 
 .wrap h2 {
+	padding-top: 45px;
 	line-height: 63px;
 }
 
@@ -45,19 +46,26 @@
 {
 	font-size: 12.5pt;
 }
-
-.contentad_instructions_h {
-	color: #5AAE35;
-	font-size: 12.5pt;
- 
-	}
 	
 .contentad_instructions_h2 {
 	color:black;
 	font-size: 12.5pt;
+	line-height: 26px;
  
 }
 
+.contentad_instructions_help {
+	margin-left: 60px;
+	font-size: 10pt;
+	line-height: 26px;
+	font-style: italic;
+}
+
+/* Settings Page */
+
+.conentad .menu-header {
+	padding-top: 50px;
+}
 
 #contentad_api_key_valid {
 	width: 16px;
@@ -80,33 +88,29 @@
 	background: url( '../images/ca_logo.png' ) no-repeat;
 }
 
-#contentad_step_one {
+.contentad_step {
 	width: 26px;
 	height: 26px;
 	display: inline-block;
-	background: url('../images/numbers.png') no-repeat 0 0;
+	background-color: #F15B39;
+	-webkit-border-radius: 20px 20px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	border-radius: 20px 20px 20px 20px;
 }
 
-#contentad_step_two {
-	width: 26px;
-	height: 26px;
-	display: inline-block;
-	background-image: url('../images/numbers.png');
-	background-repeat: no-repeat;
-	background-position: -26px 0px;
-}
-
-#contentad_step_three {
-	width: 26px;
-	height: 26px;
-	display: inline-block;
-	background-image: url('../images/numbers.png');
-	background-repeat: no-repeat;
-	background-position: -52px 0px;
+.number {
+	margin: 0;
+	padding: 4px 8px;
+	font-size: 16px;
+	color: #fff;
 }
 
 .wrap.contentad table.form-table th {
 	width: 30px;
+}
+
+.form-table td {
+	padding-top: 10px;
 }
 
 .ca-indent-section {
@@ -125,4 +129,15 @@ span.contentad-inactive-state {
 	width: 16px;
 	height: 16px;
 	background: url('../images/sm_icon_inactive.png') no-repeat;
+}
+
+span.contentad-inactive-state:hover, span.contentad-active-state:hover {
+    cursor: pointer;
+}
+
+/* Widgets page */
+
+.wrap .add-new-h2 {
+	margin: 0 3px;
+	padding: 3px 8px;
 }

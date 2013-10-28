@@ -5,7 +5,7 @@ class ContentAd__Includes__Widget extends WP_Widget {
     function ContentAd__Includes__Widget() {
       $this->WP_Widget(
 			$id = false,
-            $title = __('Content.ad Widget'),
+            $title = __('Content.ad Widget', 'contentad' ),
             $widget_ops = array(
                 'classname' => 'content-ad-widget',
                 'description' => 'Displays ads that are set to display within a widget.',

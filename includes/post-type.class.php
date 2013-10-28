@@ -19,14 +19,14 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 				'labels' => array(
 					'name' => $plural,
 					'singular_name' => $singular,
-					'add_new' => sprintf( __( 'Add New %s' ), $singular ),
-					'add_new_item' => sprintf( __( 'Add New %s' ), $singular ),
-					'edit_item' => sprintf( __( 'Edit %s' ), $singular ),
-					'new_item' => sprintf( __( 'New %s' ), $singular ),
-					'view_item' => sprintf( __( 'View %s' ), $singular ),
-					'search_items' => sprintf( __( 'Search %s' ), $plural ),
-					'not_found' => sprintf( __( 'No %s found' ), strtolower( $plural ) ),
-					'not_found_in_trash' => sprintf( __( 'No %s found in trash' ), strtolower( $plural ) ),
+					'add_new' => sprintf( __( 'Add New %s', 'contentad' ), $singular ),
+					'add_new_item' => sprintf( __( 'Add New %s', 'contentad' ), $singular ),
+					'edit_item' => sprintf( __( 'Edit %s', 'contentad' ), $singular ),
+					'new_item' => sprintf( __( 'New %s', 'contentad' ), $singular ),
+					'view_item' => sprintf( __( 'View %s', 'contentad' ), $singular ),
+					'search_items' => sprintf( __( 'Search %s', 'contentad' ), $plural ),
+					'not_found' => sprintf( __( 'No %s found', 'contentad' ), strtolower( $plural ) ),
+					'not_found_in_trash' => sprintf( __( 'No %s found in trash', 'contentad' ), strtolower( $plural ) ),
 				),
 				'exclude_from_search' => 'true',
 				'show_ui' => true,
@@ -86,11 +86,11 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 					$url = CONTENTAD_REMOTE_URL . 'Widget/MultiPost.aspx?' . $query;
 
 					//Recreates WP_Posts_Lists_Table::single_row() case 'title', also replacing WP_List_Table::row_actions(), and get_inline_data
-					echo '<strong><a class="row-title thickbox" href="' . $url . '" title="' . esc_attr( sprintf( __( 'Edit Placement of %s' ), $post->post_title ) ) . '">' . $post->post_title . '</a></strong>';
+					echo '<strong><a class="row-title thickbox" href="' . $url . '" title="' . esc_attr( sprintf( __( 'Edit Placement of %s', 'contentad'  ), $post->post_title ) ) . '">' . $post->post_title . '</a></strong>';
 					_post_states( $post );
 
-					$actions['edit-ad-widget hide-if-no-js'] = '<a href="'.$url.'" class="thickbox" title="' . esc_attr( __( 'Edit this widget' ) ) . '">' . __( 'Edit' ) . '</a>';
-					$actions['edit-wp-placement inline hide-if-no-js'] = '<a href="#" class="editinline" title="' . esc_attr( __( 'Edit this widget\'s placement' ) ) . '">' . __( 'Placement' ) . '</a>';
+					$actions['edit-ad-widget hide-if-no-js'] = '<a href="'.$url.'" class="thickbox" title="' . esc_attr( __( 'Edit this widget', 'contentad'  ) ) . '">' . __( 'Edit', 'contentad' ) . '</a>';
+					$actions['edit-wp-placement inline hide-if-no-js'] = '<a href="#" class="editinline" title="' . esc_attr( __( 'Edit this widget\'s placement', 'contentad'  ) ) . '">' . __( 'Placement', 'contentad' ) . '</a>';
 
 					if( get_post_meta( $post_id, '_ca_widget_inactive', true ) ) {
 						$text = __( 'Activate', 'contentad' );
@@ -100,7 +100,7 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 						$actions['pause'] = "<a href=\"#\" title=\"{$text}\" data-postid=\"{$post->ID}\">{$text}</a>";
 					}
 
-					$actions['trash'] = "<a class='submitdelete' title='" . esc_attr( __( 'Delete this widget' ) ) . "' href='#" . "' data-postid='{$post_id}'>" . __( 'Delete' ) . "</a>";
+					$actions['trash'] = "<a class='submitdelete' title='" . esc_attr( __( 'Delete this widget', 'contentad' ) ) . "' href='#" . "' data-postid='{$post_id}'>" . __( 'Delete', 'contentad' ) . "</a>";
 					$always_visible = false;
 					$action_count = count( $actions );
 					$i = 0;
@@ -160,6 +160,7 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 						'after_post_content' => __('After Post Content', 'contentad'),
 						'before_post_content' => __('Before Post Content', 'contentad'),
 						'in_widget' => __('In Widget', 'contentad'),
+						'in_function' => __('In a template tag', 'contentad'),
 					);
 					$actual_placement = get_post_meta( $post_id, 'placement', true );
 					if( isset( $possible_placements[$actual_placement] ) ) {
@@ -281,35 +282,42 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 					break;
 				case 'placement':
 					$options = array(
-						'before_post_content' => __('Before the post content', 'contentad'),
-						'after_post_content' => __('After the post content', 'contentad'),
+                        'after_post_content' => __('After the post content', 'contentad'),
+                        'before_post_content' => __('Before the post content', 'contentad'),
 						'in_widget' => __('In a widget (for use in a sidebar or footer)', 'contentad'),
+						'in_function' => __('In a template tag', 'contentad'),
 					); ?>
 					<fieldset class="inline-edit-col-left inline-edit-placement">
 						<div class="inline-edit-col">
 							<span class="title inline-edit-placement-label"><?php _e('Place Ads:', 'contentad') ?></span>
-							<p><?php foreach( $options as $key => $value ): ?>
+							<div><?php foreach( $options as $key => $value ): ?>
 								<label for="<?php esc_attr_e($key) ?>">
 									<input id="<?php esc_attr_e($key) ?>" type="radio" value="<?php esc_attr_e($key) ?>" name="placement" />
 									&nbsp;<?php echo $value ?>
 								</label><?php
 								if( 'in_widget' == $key ) { ?>
-									<div class="ca-indent-section">
-										<p>
+									<div class="ca-indent-section section-in-widget hidden">
+										<div>
 											<label for="_ca_display_home">
 												<input id="_ca_display_home" type="checkbox" value="1" name="_ca_display_home" />
 												&nbsp;<?php _e( 'Display on home page', 'contentad' ); ?>
 											</label>
-										</p>
-										<p>
+										</div>
+										<div>
 											<label for="_ca_display_cat_tag">
 												<input id="_ca_display_cat_tag" type="checkbox" value="1" name="_ca_display_cat_tag" />
 												&nbsp;<?php _e( 'Display on category and tag pages', 'contentad' ); ?>
 											</label>
-										</p>
+										</div>
 									</div><?php
-								} ?>
-							<?php endforeach; ?></p>
+								}
+                                if( 'in_function' == $key ) { ?>
+                                    <div class="ca-indent-section section-in-function hidden">
+                                        <input style="padding: 1em 1.5em;" type="text" value="&lt;?php do_action('contentad'); ?&gt;" contenteditable="false" size="25" />
+                                        <p style="width: 300px;"><?php _e( 'Copy the template tag above and paste it in your theme to display Content.Ad widgets in a custom location.', 'contentad' ); ?></p>
+                                    </div><?php
+                                }?>
+							<?php endforeach; ?></div>
 						</div>
 					</fieldset><?php
 
@@ -336,8 +344,8 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 
 									<span class="title inline-edit-categories-label">
 										<?php _e('Exclude from categories', 'contentad'); ?>
-										<span class="catshow"><?php _e('[more]'); ?></span>
-										<span class="cathide" style="display:none;"><?php _e('[less]'); ?></span>
+										<span class="catshow"><?php _e('[more]', 'contentad' ); ?></span>
+										<span class="cathide" style="display:none;"><?php _e('[less]', 'contentad' ); ?></span>
 									</span>
 
 									<input type="hidden" name="<?php echo $name; ?>" value="" />

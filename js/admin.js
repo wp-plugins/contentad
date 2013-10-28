@@ -154,11 +154,20 @@ jQuery(document).ready(function($) {
 		// Assign Placement
 		if( 'in_widget' == placement ) {
 			$( '#in_widget' ).attr('checked', 'checked');
+            $( '.section-in-widget' ).show();
 		} else if ( 'before_post_content' == placement ) {
 			$( '#before_post_content' ).attr('checked', 'checked');
+		} else if ( 'in_function' == placement ) {
+			$( '#in_function' ).attr('checked', 'checked');
+            $( '.section-in-function' ).show();
 		} else {
 			$( '#after_post_content' ).attr('checked', 'checked');
 		}
+
+        $('.inline-edit-col input[type="radio"]').bind( 'change.contentAd', function() {
+            $('#in_widget').is(':checked') ? $( '.section-in-widget' ).show() : $( '.section-in-widget' ).hide();
+            $('#in_function').is(':checked') ? $( '.section-in-function' ).show() : $( '.section-in-function' ).hide();
+        } );
 
 		// Assign ca_display_home
 		if( '1' == displayHome ) {

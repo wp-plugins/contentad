@@ -17,9 +17,14 @@ if ( ! class_exists( 'ContentAd__Includes__Init' ) ) {
 			add_action( 'ca_cron', array( __CLASS__, 'run_ca_cron' ) );
 			add_action( 'widgets_init', array( __CLASS__, 'widgets_init' ) );
 			add_action( 'wp_ajax_edit_contentad_widget', array( __CLASS__, 'ajax_edit_widget' ) );
+            add_action( 'contentad', array( __CLASS__, 'shortcode' ), 10, 2 );
 			register_deactivation_hook( CONTENTAD_FILE, array( __CLASS__, 'deactivate' ) );
 			register_uninstall_hook( CONTENTAD_FILE, array( __CLASS__, 'uninstall' ) );
 		}
+
+        public static function shortcode( $atts, $content = '' ) {
+            echo ContentAd__Includes__Shortcode::shortcode( $atts, $content );
+        }
 
 		public static function init() {
 			if ( ! wp_next_scheduled( 'ca_cron' ) ) {
@@ -122,7 +127,10 @@ if ( ! class_exists( 'ContentAd__Includes__Init' ) ) {
 
 		public static function get_local_widget_id_by_adunit_id( $adunit_id ) {
 			contentAd_append_to_log( PHP_EOL . 'SEARCHING FOR LOCAL MATCH TO REMOTE AD WIDGET: ' . $adunit_id );
-			global $wpdb;
+            /**
+             * @var wpdb $wpdb
+             */
+            global $wpdb;
 			$sql = sprintf(
 				"SELECT ID FROM %s LEFT JOIN %s ON ID = post_id AND meta_key = '_widget_id' WHERE meta_value = '%s' LIMIT 1",
 				$wpdb->posts,
@@ -130,10 +138,9 @@ if ( ! class_exists( 'ContentAd__Includes__Init' ) ) {
 				$adunit_id
 			);
 			$post_id = $wpdb->get_col( $sql );
-			$post_id = $post_id[0];
 			if( isset( $post_id[0] ) ) {
 				contentAd_append_to_log( '    FOUND LOCAL WIDGET ('.$post_id.') AS A MATCH FOR REMOTE WIDGET ('.$adunit_id.')' );
-				return $post_id;
+				return $post_id[0];
 			} else {
 				contentAd_append_to_log( '    NO MATCH FOR REMOTE WIDGET ('.$adunit_id.')' );
 				return false;
@@ -206,11 +213,13 @@ if ( ! class_exists( 'ContentAd__Includes__Init' ) ) {
 		public static function delete_associated_widgets( $post_id ) {
 			$option_name = 'widget_contentad__includes__widget';
 			$widget_option = get_option( $option_name );
-			foreach( $widget_option as $index => $widget ) {
-				if( is_int( $index ) && isset( $widget['widget_id'] ) && $widget['widget_id'] == $post_id ) {
-					unset( $widget_option[$index] );
-				}
-			}
+            if( $widget_option && is_array( $widget_option ) ) {
+                foreach( $widget_option as $index => $widget ) {
+                    if( is_int( $index ) && isset( $widget['widget_id'] ) && $widget['widget_id'] == $post_id ) {
+                        unset( $widget_option[$index] );
+                    }
+                }
+            }
 			update_option( $option_name, $widget_option );
 		}
 

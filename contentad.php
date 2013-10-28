@@ -1,17 +1,17 @@
 <?php
 /*
- * Plugin Name: Content.Ad
+ * Plugin Name: Content.ad
  * Plugin URI: http://content.ad/
- * Description: Content.Ad enables blog owners to display ads or related blog posts (from their own blog) in a "lead me to more content" section. The ads are sourced dynamically from the Content.Ad system and can be a source of revenue for the blog owner.
- * Version:  1.1.1
- * Author: BroadSpring
+ * Description: Content.ad enables blog owners to display ads or related blog posts (from their own blog) in a "lead me to more content" section. The ads are sourced dynamically from the Content.ad system and can be a source of revenue for the blog owner.
+ * Version:  1.1.3
+ * Author: Content.ad
  * Author URI: http://content.ad/
- * Developer: NewClarity LLC
- * Developer URI: http://newclarity.net
+ * Developer: Content.ad
+ * Developer URI: http://content.ad
  * Text Domain: contentad
  * License: GPLv2
  *
- *  Copyright 2012 BroadSpring (info@content.ad)
+ *  Copyright 2013 Content.ad (info@content.ad)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License, version 2, as
@@ -40,11 +40,11 @@ function get_contentad_file() {
   return $file;
 }
 
-define( 'CONTENTAD_VERSION', '1.1.1' );
+define( 'CONTENTAD_VERSION', '1.1.3' );
 define( 'CONTENTAD_FILE', get_contentad_file() );
 define( 'CONTENTAD_PATH', plugin_dir_path( CONTENTAD_FILE ) );
 define( 'CONTENTAD_URL', plugins_url( '', CONTENTAD_FILE ) );
-define( 'CONTENTAD_NAME', __('Content.Ad', 'contentad') );
+define( 'CONTENTAD_NAME', __('Content.ad', 'contentad') );
 define( 'CONTENTAD_SLUG', 'contentad' );
 define( 'CONTENTAD_API_URL', 'http://api.content.ad/api.svc' );
 define( 'CONTENTAD_REMOTE_URL', 'https://www.content.ad/' );
@@ -101,4 +101,4 @@ function contentAd_append_to_log( $text ){
 }
 
 // Initialize plugin
-ContentAd__Includes__Init::on_load();
+add_action( 'plugins_loaded', array( 'ContentAd__Includes__Init', 'on_load' ) );

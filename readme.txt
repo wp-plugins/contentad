@@ -1,9 +1,9 @@
 === Content.ad ===
-Contributors: Broadspring, NewClarity
-Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts,
+Contributors: contentad, NewClarity
+Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts
 Requires at least: 3.0.6
 Tested up to: 3.3.4
-Stable tag: 1.1.1
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,12 @@ This plugin enables WordPress users to quickly and easily setup the Content.ad c
 = How Does It Work? =
 
 Content.ad analyzes your pages on an ongoing basis and displays links to the content on your site that that your readers will find most interesting. Our algorithm creates a complete _"engagement"_ profile of each piece of content based on popularity, social sharing, comments and other metrics, and then promotes your best content so as to maximize page views, time-on-site, and revenue.
+
+<div id="contentad_video" class="video-js vjs-default-skin vjs-paused" style="width: 850px; height: 478.125px;"><video data-setup="{}" poster="/Images/video_ss.png" preload="auto" class="vjs-tech" id="contentad_video_html5_api" src="Video/contentad_v5.mp4">
+                        <source type="video/mp4" src="Video/contentad_v5.mp4"></source>
+                        <source type="video/webm" src="Video/contentad_v5.webm"></source>
+                        <source type="video/ogg" src="Video/contentad_v5.ogv"></source>
+                    </video><div></div><div class="vjs-poster" tabindex="-1" style="background-image: url(&quot;/Images/video_ss.png&quot;); display: none;"></div><div class="vjs-text-track-display"></div><div class="vjs-loading-spinner" style="display: none;"></div><div class="vjs-big-play-button" aria-live="polite" tabindex="0" aria-label="play video" style="display: none;"><span></span></div><div class="vjs-control-bar vjs-lock-showing vjs-fade-out"><div class="vjs-play-control vjs-control  vjs-paused" aria-live="polite" tabindex="0"><div class="vjs-control-content"><span class="vjs-control-text">Play</span></div></div><div class="vjs-current-time vjs-time-controls vjs-control"><div class="vjs-current-time-display" aria-live="off"><span class="vjs-control-text">Current Time </span>0:21</div></div><div class="vjs-time-divider"><div><span>/</span></div></div><div class="vjs-duration vjs-time-controls vjs-control"><div class="vjs-duration-display" aria-live="off"><span class="vjs-control-text">Duration Time </span>1:34</div></div><div class="vjs-remaining-time vjs-time-controls vjs-control"><div class="vjs-remaining-time-display" aria-live="off"><span class="vjs-control-text">Remaining Time </span>-1:12</div></div><div class="vjs-progress-control vjs-control"><div aria-valuenow="22.92" aria-valuemin="0" aria-valuemax="100" tabindex="0" class="vjs-progress-holder vjs-slider" aria-label="video progress bar" aria-valuetext="0:21"><div class="vjs-load-progress" style="width: 100%;"><span class="vjs-control-text">Loaded: 0%</span></div><div class="vjs-play-progress" style="width: 23.07%;"><span class="vjs-control-text">Progress: 0%</span></div><div class="vjs-seek-handle vjs-slider-handle" style="left: 22.78%;"><span class="vjs-control-text">00:00</span></div></div></div><div class="vjs-fullscreen-control vjs-control " aria-live="polite" tabindex="0"><div class="vjs-control-content"><span class="vjs-control-text">Fullscreen</span></div></div><div class="vjs-volume-control vjs-control"><div aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" tabindex="0" class="vjs-volume-bar vjs-slider" aria-label="volume level" aria-valuetext="100%"><div class="vjs-volume-level" style="width: 95%;"><span class="vjs-control-text"></span></div><div class="vjs-volume-handle vjs-slider-handle" style="left: 90%;"><span class="vjs-control-text">00:00</span></div></div></div><div class="vjs-mute-control vjs-control" aria-live="polite" tabindex="0"><div><span class="vjs-control-text">Mute</span></div></div><div class="vjs-subtitles-button vjs-menu-button vjs-control " aria-live="polite" tabindex="0" aria-haspopup="true" role="button" style="display: none;" aria-label="Subtitles Menu"><div class="vjs-control-content"><span class="vjs-control-text">Subtitles</span></div><div class="vjs-menu"><ul class="vjs-menu-content"><li class="vjs-menu-item vjs-selected" aria-live="polite" tabindex="0" aria-selected="true">subtitles off</li></ul></div></div><div class="vjs-captions-button vjs-menu-button vjs-control " aria-live="polite" tabindex="0" aria-haspopup="true" role="button" style="display: none;" aria-label="Captions Menu"><div class="vjs-control-content"><span class="vjs-control-text">Captions</span></div><div class="vjs-menu"><ul class="vjs-menu-content"><li class="vjs-menu-item vjs-selected" aria-live="polite" tabindex="0" aria-selected="true">captions off</li></ul></div></div><div class="vjs-chapters-button vjs-menu-button vjs-control " aria-live="polite" tabindex="0" style="display: none;" aria-haspopup="true" role="button" aria-label="Chapters Menu"><div class="vjs-control-content"><span class="vjs-control-text">Chapters</span></div><div class="vjs-menu"><ul class="vjs-menu-content"></ul><li class="vjs-menu-title">Chapters</li></div></div></div></div>
 
 == Installation ==
 
@@ -66,7 +72,7 @@ On the Content.ad plugin widget settings page, hover over a widget name and you 
 Yes. Set the placement for a Content.ad widget to _"widget"_. In your WordPress widget settings drag the Content.ad widget into your sidebar or footer area.
 
 = Does the Content.ad plugin work with Multisite? =
-Not at this time. [**Let us know**](https://getsatisfaction.com/contentad) if Multisite support is important to you.
+Not at this time. [**Let us know**](https://help.content.ad) if Multisite support is important to you.
 
 == Screenshots ==
 
@@ -84,6 +90,10 @@ Not at this time. [**Let us know**](https://getsatisfaction.com/contentad) if Mu
 
 
 == Changelog ==
+
+= 1.1.2 =
+* Added the ability to display ads using do_action('contentad') within a theme file.
+* Update misc. links and formatting
 
 = 1.1.1 =
 * Fixed issue where the featured image wasn't being displayed in Content.ad widgets if set.
