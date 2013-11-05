@@ -4,7 +4,7 @@
  * Plugin Name: Content.ad
  * Plugin URI: http://content.ad/
  * Description: Content.ad enables blog owners to display ads or related blog posts (from their own blog) in a "lead me to more content" section. The ads are sourced dynamically from the Content.ad system and can be a source of revenue for the blog owner.
- * Version: 1.1.3
+ * Version: 1.1.2
  * Author: Content.ad
  * Author URI: http://content.ad/
  * Developer: Content.ad
@@ -41,7 +41,7 @@ function get_contentad_file() {
   return $file;
 }
 
-define( 'CONTENTAD_VERSION', '1.1.3' );
+define( 'CONTENTAD_VERSION', '1.1.2' );
 define( 'CONTENTAD_FILE', get_contentad_file() );
 define( 'CONTENTAD_PATH', plugin_dir_path( CONTENTAD_FILE ) );
 define( 'CONTENTAD_URL', plugins_url( '', CONTENTAD_FILE ) );
