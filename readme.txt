@@ -2,7 +2,7 @@
 Contributors: contentad, NewClarity
 Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts
 Requires at least: 3.0.6
-Tested up to: 3.3.4
+Tested up to: 3.7.1
 Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -89,6 +89,7 @@ Not at this time. [**Let us know**](https://help.content.ad) if Multisite suppor
 * Fixed issues with the widget options:
  * Option to add/remove Content.ad from Home and Category pages
  * Widget Placement settings bug
+* Fixed modal resizing
 
 = 1.1.2 =
 * Added the ability to display ads using do_action('contentad') within a theme file.
