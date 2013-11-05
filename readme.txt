@@ -3,7 +3,7 @@ Contributors: contentad, NewClarity
 Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts
 Requires at least: 3.0.6
 Tested up to: 3.3.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,8 @@ This plugin enables WordPress users to quickly and easily setup the Content.ad c
 = How Does It Work? =
 
 Content.ad analyzes your pages on an ongoing basis and displays links to the content on your site that that your readers will find most interesting. Our algorithm creates a complete _"engagement"_ profile of each piece of content based on popularity, social sharing, comments and other metrics, and then promotes your best content so as to maximize page views, time-on-site, and revenue.
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/mcIYGOin58I" frameborder="0" allowfullscreen></iframe>
 
 == Installation ==
 
@@ -84,6 +86,11 @@ Not at this time. [**Let us know**](https://help.content.ad) if Multisite suppor
 
 
 == Changelog ==
+
+= 1.1.3 =
+* Fixed issues with the widget options:
+ * Option to add/remove Content.ad from Home and Category pages
+ * Widget Placement settings bug
 
 = 1.1.2 =
 * Added the ability to display ads using do_action('contentad') within a theme file.

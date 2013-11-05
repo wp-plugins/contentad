@@ -126,9 +126,15 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 					if( is_array( $excluded_categories ) ) {
 						$excluded_categories = join( ',', $excluded_categories );
 					}
+					
+					$jquery_handle = (version_compare($wp_version, '3.6-alpha1', '>=') ) ? 'jquery-core' : 'jquery';
+					// Get the WP built-in version
+					$wp_jquery_ver = $GLOBALS['wp_scripts']->registered[$jquery_handle]->ver;
+					$jquery_ver_good = version_compare($wp_jquery_ver, '1.7', '>=');
 
 					echo '
 						<div class="hidden" id="inline_' . $post->ID . '">
+						<div class="jquery_version_good">' . $jquery_ver_good . '</div>
 						<div class="post_title">' . $title . '</div>
 						<div class="post_name">' . $post->post_name . '</div>
 						<div class="placement">' . get_post_meta( $post->ID, 'placement', true ) . '</div>
@@ -313,7 +319,7 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 								}
                                 if( 'in_function' == $key ) { ?>
                                     <div class="ca-indent-section section-in-function hidden">
-                                        <input style="padding: 1em 1.5em;" type="text" value="&lt;?php do_action('contentad'); ?&gt;" contenteditable="false" size="25" />
+                                        <input style="padding: 1em 1.5em;" type="text" value="&lt;?php do_action('contentad'); ?&gt;" contenteditable="false" size="30" />
                                         <p style="width: 300px;"><?php _e( 'Copy the template tag above and paste it in your theme to display Content.Ad widgets in a custom location.', 'contentad' ); ?></p>
                                     </div><?php
                                 }?>

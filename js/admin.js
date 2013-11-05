@@ -138,66 +138,131 @@ jQuery(document).ready(function($) {
 
     $( 'tr.inline-edit-row fieldset.inline-edit-col-left:first' ).remove();
     $( 'tr.inline-edit-row fieldset.inline-edit-col-right:first' ).remove();
-
-	$('a.editinline').live('click', function(){
-		var id = inlineEditPost.getId(this);
-		var post_title = $( '#inline_' + id + ' .post_title' ).text();
-		var placement = $('#inline_' + id + ' .placement').text();
-		var displayHome = $('#inline_' + id + ' .ca_display_home').text();
-		var displayCatTag = $('#inline_' + id + ' .ca_display_cat_tag').text();
-		var excCategories = $('#inline_' + id + ' .excluded_categories').text();
-		var excTags = $('#inline_' + id + ' .excluded_tags').text();
-
-		// Assign widget title
-		$( 'tr.inline-edit-row h4.contentad-widget-title'  ).html( post_title );
-
-		// Assign Placement
-		if( 'in_widget' == placement ) {
-			$( '#in_widget' ).attr('checked', 'checked');
-            $( '.section-in-widget' ).show();
-		} else if ( 'before_post_content' == placement ) {
-			$( '#before_post_content' ).attr('checked', 'checked');
-		} else if ( 'in_function' == placement ) {
-			$( '#in_function' ).attr('checked', 'checked');
-            $( '.section-in-function' ).show();
-		} else {
-			$( '#after_post_content' ).attr('checked', 'checked');
-		}
-
-        $('.inline-edit-col input[type="radio"]').bind( 'change.contentAd', function() {
-            $('#in_widget').is(':checked') ? $( '.section-in-widget' ).show() : $( '.section-in-widget' ).hide();
-            $('#in_function').is(':checked') ? $( '.section-in-function' ).show() : $( '.section-in-function' ).hide();
-        } );
-
-		// Assign ca_display_home
-		if( '1' == displayHome ) {
-			$( '#_ca_display_home').attr( 'checked', 'checked' );
-		} else {
-			$( '#_ca_display_home').removeAttr( 'checked' );
-		}
-
-		// Assign ca_display_cat_tag
-		if( '1' == displayCatTag ) {
-			$( '#_ca_display_cat_tag').attr( 'checked', 'checked' );
-		} else {
-			$( '#_ca_display_cat_tag').removeAttr( 'checked' );
-		}
-
-		// Assign categories
-		$.each( $('#inline-edit .inline-edit-categories input[type="checkbox"]'), function() {
-			if( excCategories && $.inArray( $(this).val(), excCategories.split(',') ) != -1 ) {
-				$( '#in-category-' + $(this).val() ).attr('checked', 'checked');
+	
+	var jquery_version_good = $( '.jquery_version_good' ).text();
+	
+	if (jquery_version_good == false) {
+		$('a.editinline').live('click', function(){
+			var id = inlineEditPost.getId(this);
+			var post_title = $( '#inline_' + id + ' .post_title' ).text();
+			var placement = $('#inline_' + id + ' .placement').text();
+			var displayHome = $('#inline_' + id + ' .ca_display_home').text();
+			var displayCatTag = $('#inline_' + id + ' .ca_display_cat_tag').text();
+			var excCategories = $('#inline_' + id + ' .excluded_categories').text();
+			var excTags = $('#inline_' + id + ' .excluded_tags').text();
+	
+			// Assign widget title
+			$( 'tr.inline-edit-row h4.contentad-widget-title'  ).html( post_title );
+	
+			// Assign Placement
+			if( 'in_widget' == placement ) {
+				$( '#in_widget' ).attr('checked', 'checked');
+				$( '.section-in-widget' ).show();
+			} else if ( 'before_post_content' == placement ) {
+				$( '#before_post_content' ).attr('checked', 'checked');
+			} else if ( 'in_function' == placement ) {
+				$( '#in_function' ).attr('checked', 'checked');
+				$( '.section-in-function' ).show();
 			} else {
-				$( '#in-category-' + $(this).val() ).removeAttr('checked');
+				$( '#after_post_content' ).attr('checked', 'checked');
+			}
+	
+			$('.inline-edit-col input[type="radio"]').bind( 'change.contentAd', function() {
+				$('#in_widget').is(':checked') ? $( '.section-in-widget' ).show() : $( '.section-in-widget' ).hide();
+				$('#in_function').is(':checked') ? $( '.section-in-function' ).show() : $( '.section-in-function' ).hide();
+			} );
+	
+			// Assign ca_display_home
+			if( '1' == displayHome ) {
+				$( '#_ca_display_home').attr( 'checked', 'checked' );
+			} else {
+				$( '#_ca_display_home').removeAttr( 'checked' );
+			}
+	
+			// Assign ca_display_cat_tag
+			if( '1' == displayCatTag ) {
+				$( '#_ca_display_cat_tag').attr( 'checked', 'checked' );
+			} else {
+				$( '#_ca_display_cat_tag').removeAttr( 'checked' );
+			}
+	
+			// Assign categories
+			$.each( $('#inline-edit .inline-edit-categories input[type="checkbox"]'), function() {
+				if( excCategories && $.inArray( $(this).val(), excCategories.split(',') ) != -1 ) {
+					$( '#in-category-' + $(this).val() ).attr('checked', 'checked');
+				} else {
+					$( '#in-category-' + $(this).val() ).removeAttr('checked');
+				}
+			} );
+	
+			// Assign tags
+			if( excTags ) {
+				$('#contentad_exc_tags').html( excTags );
+			} else {
+				$('#contentad_exc_tags').html( '' );
 			}
 		} );
-
-		// Assign tags
-		if( excTags ) {
-			$('#contentad_exc_tags').html( excTags );
-		} else {
-			$('#contentad_exc_tags').html( '' );
-		}
-	} );
+	} else {
+		$('a.editinline').on('click', function(){
+			var id = inlineEditPost.getId(this);
+			var post_title = $( '#inline_' + id + ' .post_title' ).text();
+			var placement = $('#inline_' + id + ' .placement').text();
+			var displayHome = $('#inline_' + id + ' .ca_display_home').text();
+			var displayCatTag = $('#inline_' + id + ' .ca_display_cat_tag').text();
+			var excCategories = $('#inline_' + id + ' .excluded_categories').text();
+			var excTags = $('#inline_' + id + ' .excluded_tags').text();
+	
+			// Assign widget title
+			$( 'tr.inline-edit-row h4.contentad-widget-title'  ).html( post_title );
+	
+			// Assign Placement
+			if( 'in_widget' == placement ) {
+				$( '#in_widget' ).attr('checked', 'checked');
+				$( '.section-in-widget' ).show();
+			} else if ( 'before_post_content' == placement ) {
+				$( '#before_post_content' ).attr('checked', 'checked');
+			} else if ( 'in_function' == placement ) {
+				$( '#in_function' ).attr('checked', 'checked');
+				$( '.section-in-function' ).show();
+			} else {
+				$( '#after_post_content' ).attr('checked', 'checked');
+			}
+	
+			$('.inline-edit-col input[type="radio"]').bind( 'change.contentAd', function() {
+				$('#in_widget').is(':checked') ? $( '.section-in-widget' ).show() : $( '.section-in-widget' ).hide();
+				$('#in_function').is(':checked') ? $( '.section-in-function' ).show() : $( '.section-in-function' ).hide();
+			} );
+	
+			// Assign ca_display_home
+			if( '1' == displayHome ) {
+				$( '#_ca_display_home').attr( 'checked', 'checked' );
+			} else {
+				$( '#_ca_display_home').removeAttr( 'checked' );
+			}
+	
+			// Assign ca_display_cat_tag
+			if( '1' == displayCatTag ) {
+				$( '#_ca_display_cat_tag').attr( 'checked', 'checked' );
+			} else {
+				$( '#_ca_display_cat_tag').removeAttr( 'checked' );
+			}
+	
+			// Assign categories
+			$.each( $('#inline-edit .inline-edit-categories input[type="checkbox"]'), function() {
+				if( excCategories && $.inArray( $(this).val(), excCategories.split(',') ) != -1 ) {
+					$( '#in-category-' + $(this).val() ).attr('checked', 'checked');
+				} else {
+					$( '#in-category-' + $(this).val() ).removeAttr('checked');
+				}
+			} );
+	
+			// Assign tags
+			if( excTags ) {
+				$('#contentad_exc_tags').html( excTags );
+			} else {
+				$('#contentad_exc_tags').html( '' );
+			}
+		} );
+	}
 
 });
