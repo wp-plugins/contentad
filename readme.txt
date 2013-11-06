@@ -11,7 +11,7 @@ Display a list of related and popular content on your site to increase visitor e
 
 == Description ==
 
-You have an interesting and engaging website but how do you get the most out of your top performing content?  The answer - [**Content.ad**](https://www.content.ad).
+You have an interesting and engaging website but how do you get the most out of your top performing content?  The answer - <a href="https://www.content.ad" target="_blank">Content.ad</a>.
 
 This plugin enables WordPress users to quickly and easily setup the Content.ad content recommendation system on their site. The plugin can be used to serve related articles from your own site, sponsored articles from across the web or both.
 
@@ -25,6 +25,8 @@ This plugin enables WordPress users to quickly and easily setup the Content.ad c
 = How Does It Work? =
 
 Content.ad analyzes your pages on an ongoing basis and displays links to the content on your site that that your readers will find most interesting. Our algorithm creates a complete _"engagement"_ profile of each piece of content based on popularity, social sharing, comments and other metrics, and then promotes your best content so as to maximize page views, time-on-site, and revenue.
+
+[youtube http://www.youtube.com/watch?v=mcIYGOin58I]
 
 == Installation ==
 
@@ -66,7 +68,7 @@ On the Content.ad plugin widget settings page, hover over a widget name and you 
 Yes. Set the placement for a Content.ad widget to _"widget"_. In your WordPress widget settings drag the Content.ad widget into your sidebar or footer area.
 
 = Does the Content.ad plugin work with Multisite? =
-Not at this time. [**Let us know**](https://help.content.ad) if Multisite support is important to you.
+Not at this time. <a href="http://help.content.ad" target="_blank">Let Us Know</a> if Multisite support is important to you.
 
 == Screenshots ==
 
