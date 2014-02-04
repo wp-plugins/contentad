@@ -49,11 +49,13 @@ if ( ! class_exists( 'ContentAd__Includes__Admin__Admin' ) ) {
 		function menu_page_settings(){
 			ContentAd__Includes__API::validate_installation_key();
 			settings_errors( 'contentad_settings' ); ?>
-			<div class="wrap contentad">
-				<div class="icon32 icon32-contentad-settings" id="icon-broadpsring-ca" style="width: 201px;height:71px;">
-					<?php echo '<img src="'.plugins_url( 'images/', CONTENTAD_FILE ).'ca_logo.png" />' ?>
+			<div class="wrap settings-container">
+				<div class="menu-masthead">
+					<div class="icon32 icon32-contentad-settings" id="icon-broadpsring-ca">
+						<?php echo '<a href="https://www.content.ad/" target="_blank"><img src="'.plugins_url( 'images/', CONTENTAD_FILE ).'ca_logo.png" /></a>' ?>
+					</div>
+					<h2 class="menu-header"><?php _e('Settings','contentad'); ?></h2>
 				</div>
-				<h2 class="menu-header"><?php _e('Settings','contentad'); ?></h2>
 				<form name="contentad_settings" action="<?php echo admin_url('options.php'); ?>" method="post">
 					<?php settings_fields( 'contentad_settings' ); ?>
 					<?php do_settings_sections(CONTENTAD_SLUG); ?><br />

@@ -17,14 +17,31 @@
 	display: none;
 }
 
-.wrap .icon32-posts-content_ad_widget {
-	width: 201px;
-	height: 71px;
+.settings-container {
+	max-width: 640px;
 }
 
-.wrap h2 {
-	padding-top: 45px;
-	line-height: 63px;
+.menu-masthead {
+	border-bottom: 1px solid #333;
+	margin-bottom: 10px;
+}
+
+.menu-masthead .icon32-contentad-settings,
+.menu-masthead .menu-header {
+	display: inline-block;
+}
+
+.settings-container .menu-header {
+	margin-top: 26px !important;
+	padding-right: 0;
+	float: right;
+	vertical-align: bottom;
+	color: #333;
+}
+
+.settings-container .form-table th {
+	width: inherit;
+	padding-top: 10px;
 }
 
 .inline-edit-placement input[type="radio"] {
@@ -36,10 +53,6 @@
 	border: 1px solid #C00;
 	padding: 5px 10px;
 	max-width: 300px;
-}
-
-.wrap h2 {
-	line-height: 30px;
 }
 
 .contentad a.thickbox

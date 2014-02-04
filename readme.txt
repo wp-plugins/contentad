@@ -2,8 +2,8 @@
 Contributors: contentad, NewClarity
 Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts
 Requires at least: 3.0.6
-Tested up to: 3.7.1
-Stable tag: 1.1.3
+Tested up to: 3.8.1
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,6 +86,10 @@ Not at this time. [Let Us Know](http://help.content.ad) if Multisite support is 
 
 
 == Changelog ==
+
+= 1.1.4 =
+* Fixed CSS for WP 3.8.1
+* Update misc. URL links & dates
 
 = 1.1.3 =
 * Fixed issues with the widget options:
