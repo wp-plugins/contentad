@@ -2,17 +2,17 @@
 
 /**
  * Plugin Name: Content.ad
- * Plugin URI: http://content.ad/
+ * Plugin URI: https://www.content.ad/Wordpress.aspx
  * Description: Content.ad enables blog owners to display ads or related blog posts (from their own blog) in a "lead me to more content" section. The ads are sourced dynamically from the Content.ad system and can be a source of revenue for the blog owner.
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: Content.ad
- * Author URI: http://content.ad/
+ * Author URI: https://www.content.ad
  * Developer: Content.ad
- * Developer URI: http://content.ad
+ * Developer URI: https://www.content.ad
  * Text Domain: contentad
  * License: GPLv2
  *
- *  Copyright 2013 Content.ad (info@content.ad)
+ *  Copyright 2014 Content.ad (info@content.ad)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License, version 2, as
@@ -41,7 +41,7 @@ function get_contentad_file() {
   return $file;
 }
 
-define( 'CONTENTAD_VERSION', '1.1.3' );
+define( 'CONTENTAD_VERSION', '1.1.4' );
 define( 'CONTENTAD_FILE', get_contentad_file() );
 define( 'CONTENTAD_PATH', plugin_dir_path( CONTENTAD_FILE ) );
 define( 'CONTENTAD_URL', plugins_url( '', CONTENTAD_FILE ) );
