@@ -2,6 +2,10 @@
 	display:none;
 }
 
+#TB_closeAjaxWindow {
+	padding: 5px;
+}
+
 #TB_closeWindowButton {
 	display: block;
 	width: 21px;
@@ -11,6 +15,10 @@
 
 #TB_window #TB_title {
 	height:35px;
+}
+
+#TB_title {
+	background-color: #333;
 }
 
 .wrap h2 a.add-new-h2, .wrap ul.subsubsub, .wrap form#posts-filter p.search-box, .wrap form#posts-filter div.tablenav {
