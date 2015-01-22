@@ -7,7 +7,7 @@ Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display popular content to your users from your own site and/or from our sponsored partners, increasing visitor engagement and earning revenue
+Display popular content to your users from your own site and/or from our sponsored partners, increasing visitor engagement and revenue.
 
 == Description ==
 
