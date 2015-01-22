@@ -269,7 +269,8 @@ if ( ! class_exists( 'ContentAd__Includes__API' ) ) {
 				 * Return the generated code
 				 */
 				return <<<HTML
-<script type="text/javascript" src="http://api.content.ad/Scripts/widget.js?{$query_string}"></script>
+<div id="contentad{$query['wid']}"></div>
+<script type="text/javascript" src="http://api.content.ad/Scripts/widget.aspx?{$query_string}"></script>
 HTML;
 			}
 			return false;

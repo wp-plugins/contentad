@@ -72,6 +72,7 @@ if ( ! class_exists( 'ContentAd__Includes__Post_Type' ) ) {
 		}
 
 		function manage_content_ad_widget_posts_custom_column( $column_name, $post_id ) {
+			global $wp_version;
 			$post = get_post( $post_id );
 			switch ( $column_name ) {
 				case 'widget_title':

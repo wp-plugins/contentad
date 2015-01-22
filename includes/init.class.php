@@ -54,7 +54,7 @@ if ( ! class_exists( 'ContentAd__Includes__Init' ) ) {
 				$link_text = __( 'Visit on WordPress.org', 'contentad' );
 				$plugin_meta[] = "<a href=\"http://wordpress.org/extend/plugins/contentad\" target=\"_blank\">{$link_text}</a>";
 				$link_text = __( 'Visit Developer\'s Profile', 'contentad' );
-				$plugin_meta[] = "<a href=\"http://profiles.wordpress.org/NewClarity/\" target=\"_blank\">{$link_text}</a>";
+				$plugin_meta[] = "<a href=\"http://profiles.wordpress.org/contentad/\" target=\"_blank\">{$link_text}</a>";
 			}
 			return $plugin_meta;
 		}

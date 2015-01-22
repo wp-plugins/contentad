@@ -2,39 +2,46 @@
 Contributors: contentad
 Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts
 Requires at least: 3.0.6
-Tested up to: 4.0
-Stable tag: 1.1.6
+Tested up to: 4.1
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display a list of related and popular content on your site to increase visitor engagement and as a new source of revenue.
+Display popular content to your users from your own site and/or from our sponsored partners, increasing visitor engagement and earning revenue at the same time.
 
 == Description ==
 
-You have an interesting and engaging website but how do you get the most out of your top performing content?  The answer - [Content.ad](https://www.content.ad).
-
-This plugin enables WordPress users to quickly and easily setup the Content.ad content recommendation system on their site. The plugin can be used to serve related articles from your own site, sponsored articles from across the web or both.
+[Content.ad](http://www.content.ad) is a content recommendation platform that helps site owners generate more time-on-site and monetize their content easily and unobtrusively.  Content.ad serves billions of impressions across thousands of sites every month. The WordPress plugin is the quickest and easiest way to get Content.ad up and running on your site.
 
 = Key Features =
-* Simple installation and integration without the need for editing templates, adding shortcodes or customizing themes.
-* Create, edit, customize and report all from within your WordPress admin.
-* Multiple display options to match any site or take control and define your own styles.
-* Contextually matches related post content without relying on categories or tagging.
-* Include sponsored links to earn a healthy 70% revenue share on sponsored CPA offers _(available to English sites only.)_
 
-= How Does It Work? =
+* **Simple Setup**
+Our 3-step guided installation gets you creating your first widget in minutes.
 
-Content.ad analyzes your pages on an ongoing basis and displays links to the content on your site that that your readers will find most interesting. Our algorithm creates a complete _"engagement"_ profile of each piece of content based on popularity, social sharing, comments and other metrics, and then promotes your best content so as to maximize page views, time-on-site, and revenue.
+* **Flexible Styling**
+Our widget creation wizard makes customizing the look and feel of the widget simple and straightforward.
 
-http://www.youtube.com/watch?v=mcIYGOin58I
+* **Performance Driven**
+Our state-of-the-art algorithms learn what content is most popular with your users, lowering bounce rates and increasing overall site revenue. Also, since optimization takes place on Content.ad servers and the widget is loaded asynchronously, the plugin doesn't slow down your site.
+
+* **Powerful Options**
+Free enterprise-level features let you control how the widget integrates into your site and what kind of content appears in it, all without leaving your WordPress admin.
+
+* **Rich Reporting**
+Use our robust reporting and graphing options to see exactly how well your widgets perform down to the hour.
+
+* **Personalized Support**
+Our US-based support staff is available to help you properly set up and optimize Content.ad to meet your needs.
+
+To learn more about Content.ad, visit our [publisher FAQ](http://help.content.ad/) or [visit our website](https://www.content.ad).
 
 == Installation ==
 
 = Requirements =
-* PHP 5.2 or higher.
+* PHP 5.2.4 or higher.
 * WordPress v3.0.x or higher.
-* Multisite is not currently supported.
-* You must register with Content.ad. The account is 100% free.
+* **Multisite is not currently supported.**
+* *You must register with Content.ad. The account is 100% free.*
 
 = Install Via Plugin Repository =
 1. Log into WordPress admin for your site
@@ -86,6 +93,11 @@ Not at this time. [Let Us Know](http://help.content.ad) if Multisite support is 
 
 
 == Changelog ==
+
+= 1.1.7 =
+* Updated for Wordpress 4.1 compatibility
+* Updated descriptions, documentation, plugin image, etc.
+* Utilizing latest Content.ad widget call URL (widget.js -> widget.aspx)
 
 = 1.1.6 =
 * Updated for WordPress 4.0
