@@ -15,29 +15,17 @@ Display popular content to your users from your own site and/or from our sponsor
 
 = Key Features =
 
-**Simple Setup**
+**Simple Setup** - Our 3-step guided installation gets you creating your first widget in minutes.
 
-Our 3-step guided installation gets you creating your first widget in minutes.
+**Flexible Styling** - Our widget creation wizard makes customizing the look and feel of the widget simple and straightforward.
 
-**Flexible Styling**
+**Performance Driven** - Our state-of-the-art algorithms learn what content is most popular with your users, lowering bounce rates and increasing overall site revenue. Also, since optimization takes place on Content.ad servers and the widget is loaded asynchronously, the plugin doesn't slow down your site.
 
-Our widget creation wizard makes customizing the look and feel of the widget simple and straightforward.
+**Powerful Options** - Free enterprise-level features let you control how the widget integrates into your site and what kind of content appears in it, all without leaving your WordPress admin.
 
-**Performance Driven**
+**Rich Reporting** - Use our robust reporting and graphing options to see exactly how well your widgets perform down to the hour.
 
-Our state-of-the-art algorithms learn what content is most popular with your users, lowering bounce rates and increasing overall site revenue. Also, since optimization takes place on Content.ad servers and the widget is loaded asynchronously, the plugin doesn't slow down your site.
-
-**Powerful Options**
-
-Free enterprise-level features let you control how the widget integrates into your site and what kind of content appears in it, all without leaving your WordPress admin.
-
-**Rich Reporting**
-
-Use our robust reporting and graphing options to see exactly how well your widgets perform down to the hour.
-
-**Personalized Support**
-
-Our US-based support staff is available to help you properly set up and optimize Content.ad to meet your needs.
+**Personalized Support** - Our US-based support staff is available to help you properly set up and optimize Content.ad to meet your needs.
 
 To learn more about Content.ad, visit our [publisher FAQ](http://help.content.ad/) or [visit our website](https://www.content.ad).
 
