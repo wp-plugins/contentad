@@ -3,7 +3,7 @@ Contributors: contentad
 Tags: related content, engagement, ads, advertising, revenue, posts, montize, monetization, affiliate, contextual ads, contextual advertising, pay per click, ppc, ad networks, relevent ads, text ads, content ads, income, related posts, widgets, related, similar posts, related post thumbnails, popular posts
 Requires at least: 3.0.6
 Tested up to: 4.1
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,9 @@ Not at this time. [Let Us Know](http://help.content.ad) if Multisite support is 
 
 
 == Changelog ==
+
+= 1.1.8 =
+* Fixed: Plugin activation bug for new installations
 
 = 1.1.7 =
 * Updated for Wordpress 4.1 compatibility
